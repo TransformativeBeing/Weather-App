@@ -1,77 +1,4 @@
-// Code for displaying current date
-
-function formatDate(currentDate) {
-  function hourMath() {
-    let hourInput = currentDate.getHours();
-    if (hourInput >= 10) {
-      return hourInput;
-    } else {
-      return `0${hourInput}`;
-    }
-  }
-
-  function minuetMath() {
-    let minuetInput = currentDate.getMinutes();
-    if (minuetInput >= 10) {
-      return minuetInput;
-    } else {
-      return `0${minuetInput}`;
-    }
-  }
-
-  let currentDate = new Date();
-  let hours = hourMath();
-  let minuets = minuetMath();
-  let day = days[currentDate.getDay()];
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let formatedDate = `${day} ${hours}:${minuets}`;
-
-  return formatedDate;
-}
-
-let date = document.querySelector(".date");
-date.innerHTML = formatDate(currentDate);
-
-// Code for changing temperature unit
-let fahrenheit = document.querySelector(".fahrenheit");
-
-fahrenheit.addEventListener("click", function (event) {
-  event.preventDefault();
-  let newTemp = document.querySelector(".temprature");
-  function fahrenheitMath() {
-    let tempElement = document.querySelector(".temprature");
-    let tempNumber = tempElement.innerHTML;
-    tempNumber = Number(tempNumber);
-    let mathTemp = Math.round(tempNumber * (9 / 5) + 32);
-    return mathTemp;
-  }
-  newTemp.innerHTML = fahrenheitMath();
-});
-
-let celsius = document.querySelector(".celsius");
-
-celsius.addEventListener("click", function (event) {
-  event.preventDefault();
-  let newTemp = document.querySelector(".temprature");
-  function celsiusMath() {
-    let tempElement = document.querySelector(".temprature");
-    let tempNumber = tempElement.innerHTML;
-    tempNumber = Number(tempNumber);
-    let mathTemp = Math.round((tempNumber - 32) * (5 / 9));
-    return mathTemp;
-  }
-  newTemp.innerHTML = celsiusMath();
-});
-
-// Code for Display Function
+//Displayed Results
 function displayResponse(response) {
   function capitalize(words) {
     let string = words;
@@ -83,27 +10,29 @@ function displayResponse(response) {
     return str2;
   }
 
-  let tempOutput = document.querySelector(`#temperature`);
-  let cityOutput = document.querySelector(`#city`);
-  let countryOutput = document.querySelector(`#country`);
-  let descriptionOutput = document.querySelector(`#description`);
-  let humidityOutput = document.querySelector(`#humidity`);
-  let windOutput = document.querySelector(`#windSpeed`);
-
   //console.log(response.data);
-
-  tempOutput.innerHTML = Math.round(response.data.main.temp);
-  cityOutput.innerHTML = response.data.name;
-  countryOutput.innerHTML = response.data.sys.country;
-  descriptionOutput.innerHTML = capitalize(
+  document.querySelector(
+    `#descriptionEmoji`
+  ).src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+  document.querySelector(`#description`).innerHTML = capitalize(
     response.data.weather[0].description
   );
-  humidityOutput.innerHTML = `${response.data.main.humidity}%`;
-  windOutput.innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector(`#temperature`).innerHTML = Math.round(
+    response.data.main.temp
+  );
+  document.querySelector(`#city`).innerHTML = response.data.name;
+  document.querySelector(`#country`).innerHTML = response.data.sys.country;
+
+  document.querySelector(`#humidity`).innerHTML = response.data.main.humidity;
+  document.querySelector(`#windSpeed`).innerHTML = Math.round(
+    response.data.wind.speed
+  );
+  document.querySelector(`#date`).innerHTML = formatDate(
+    new Date(response.data.dt * 1000)
+  );
 }
 
-// Code for City Search
-
+//City Search
 document
   .querySelector("#search-form")
   .addEventListener("submit", function (event) {
@@ -118,7 +47,12 @@ document
     axios.get(apiLink).then(displayResponse);
   });
 
-// Code for Geoloctaion
+//Geo-location
+document.querySelector(`#location`).addEventListener("click", function (event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(currentPosition);
+});
+
 function currentPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=`;
   let apiKey = `cebebe92bb0f992987113af37d5c411b `;
@@ -128,7 +62,38 @@ function currentPosition(position) {
   axios.get(apiLink).then(displayResponse);
 }
 
-document.querySelector(`#location`).addEventListener("click", function (event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(currentPosition);
-});
+//Displaying Date
+function formatDate(currentDate) {
+  function hourMath() {
+    let hourInput = currentDate.getHours();
+    if (hourInput >= 10) {
+      return hourInput;
+    } else {
+      return hourInput;
+    }
+  }
+
+  function minuetMath() {
+    let minuetInput = currentDate.getMinutes();
+    if (minuetInput >= 10) {
+      return minuetInput;
+    } else {
+      return minuetInput;
+    }
+  }
+
+  let hours = hourMath();
+  let minuets = minuetMath();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[currentDate.getDay()];
+
+  return `${day} ${hours}:${minuets}`;
+}
