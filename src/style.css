@@ -25,35 +25,23 @@ body {
 
 .row1 {
   text-align: center;
-  padding: 35px 0 0;
+  margin: 30px 0 0;
+  padding: 10px;
 }
 
 .description {
   color: #2c91e4;
   font-size: 35px;
   line-height: 1.2;
-  text-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
-  text-transform: capitalize;
-}
-
-.descriptionIcon {
-  max-width: 60px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .row2 {
   text-align: center;
   line-height: 1;
-  padding: 0 35px 10px;
-  text-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
-}
-
-.group1 {
-  position: relative;
-  top: 3px;
-}
-
-.windEmoji {
-  font-size: 25px;
+  margin: 0 0;
+  padding: 0 35px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .windSpeed {
@@ -67,83 +55,109 @@ body {
   padding: 0 0 0 35px;
 }
 
+.windEmoji {
+  font-size: 25px;
+}
 .group2 {
   position: relative;
-  right: 6px;
+  left: 10px;
 }
-
 .temperature {
   color: #2c91e4;
   font-size: 50px;
   padding: 0 0 0 28px;
 }
-
-.fahrenheit {
+.degree {
   color: #2c91e4;
+  font-size: 50px;
+}
+.tempUnits {
   font-size: 14px;
-  font-weight: 700;
   position: relative;
   right: 3px;
   bottom: 25px;
 }
+.celsius {
+  color: #2c91e4;
 
-.group3 {
-  position: relative;
-  top: 10px;
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+.celsius:hover {
+  color: #2c91e4;
+  font-weight: 700;
 }
 
+.fahrenheit {
+  color: #4353a1;
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+.fahrenheit:hover {
+  color: #2c91e4;
+  font-weight: 700;
+}
 .humidity {
   color: #2c91e4;
-  font-size: 20px;
+  font-size: 21px;
 }
 
-.humidityLabel {
+.humidityLable {
   color: #4353a1;
   font-size: 17px;
 }
 
 .row3 {
   text-align: center;
-  text-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
+  margin: 10px 0 0;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.set1 {
+  width: 50%;
 }
 
 .sunEjoji {
   width: 25px;
   height: auto;
-  position: relative;
-  top: 5px;
 }
 
-.sunLabels {
+.sunriseLabel {
   color: #4353a1;
 }
 
-.sunTimes {
+.sunsetLabel {
+  color: #4353a1;
+}
+
+.sunriseTime {
   color: #2c91e4;
 }
 
+.sunsetTime {
+  color: #2c91e4;
+}
+.set2 {
+  position: relative;
+  right: 10px;
+}
 .city {
   color: #2c91e4;
-  font-size: 18px;
+  font-size: 20px;
   position: relative;
   right: 0px;
 }
-
 .search-bar {
   width: 65%;
 }
-
-.date {
-  color: #2c91e4;
-  font-size: 18px;
-  position: relative;
-  right: 0px;
+.form-control {
+  width: 100%;
 }
-
-.set3 {
-  padding: 32px 0 0;
+#searchBar {
+  display: inline-block;
+  border: 1px solid #4353a1;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
 .searchButton {
   text-align: center;
   padding: 3px 4px;
@@ -152,31 +166,29 @@ body {
   color: #2c91e4;
   font-size: 13px;
   font-weight: 700;
-  text-shadow: 1px 1px 1px rgb(0 0 0 / 20%);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   width: 57px;
   height: 30px;
   background: transparent;
   border: 2px solid #4353a1;
   border-radius: 30px;
-  box-shadow: 2px 2px 2px rgb(0 0 0 / 30%);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
   transition: all 200ms ease-in-out;
 }
+.searchButton:hover {
+  cursor: pointer;
+  background: #4353a1;
+}
 
-.location {
-  width: 30px;
-  height: 30px;
-  display: block;
-  position: relative;
-  right: 15px;
-  top: 3px;
+.date {
   color: #2c91e4;
-  padding: 5px 0 0;
-  background: transparent;
-  border: 2px solid #4353a1;
-  border-radius: 50%;
-  text-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
-  box-shadow: 2px 2px 2px rgb(0 0 0 / 30%);
-  transition: all 200ms ease-in-out;
+  font-size: 20px;
+  position: relative;
+  right: 0px;
+}
+
+.set3 {
+  padding: 32px 0 0 7px;
 }
 
 button {
@@ -184,28 +196,46 @@ button {
   border: transparent;
 }
 
+.location {
+  width: 30px;
+  height: 30px;
+  display: block;
+  position: relative;
+  right: 10px;
+  top: 3px;
+  color: #2c91e4;
+  padding: 5px 0 0px 0px;
+  background: transparent;
+  border: 2px solid #4353a1;
+  border-radius: 50%;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  transition: all 200ms ease-in-out;
+}
+
+.location:hover {
+  cursor: pointer;
+  background: #4353a1;
+}
+
 .row4 {
   text-align: center;
-  padding: 15px 50px 35px;
+  margin: 20px 0 35px;
+  padding: 0 40px;
   line-height: 1.1;
 }
 
-.day {
-  color: #2c91e4;
-  font-weight: 700;
-  position: relative;
-  top: 5px;
+.weather {
+  font-size: 35px;
 }
 
-.weather {
-  max-width: 45px;
+.day {
+  font-weight: 700;
 }
 
 .temp {
   font-size: 14px;
   font-weight: 600;
-  position: relative;
-  bottom: 5px;
 }
 
 .high {
@@ -216,7 +246,6 @@ button {
 
 .low {
   color: #ff7e67;
-  opacity: 95%;
   text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
     -1px 1px 0 #000, 1px 1px 0 #000;
 }
