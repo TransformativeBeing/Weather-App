@@ -1,84 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Weather App</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/style.css" />
-    <script
-      src="https://kit.fontawesome.com/6a5a756de8.js"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://kit.fontawesome.com/6a5a756de8.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-      crossorigin="anonymous"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
-      <div class="circle">
-        <div class="row row1">
-          <div class="col description mt-3">
-            <div id="descriptionEmoji">☀️</div>
-            <div id="description">Clear Skies</div>
-          </div>
-        </div>
+        <div class="circle">
+            <div class="row row1">
+                <div class="col description">
+                    <div id="description"></div>
+                    <img src="" class="descriptionIcon" id="descriptionIcon" alt="" />
+                </div>
+            </div>
 
-        <div class="row row2 mt-3">
-          <div class="col group1">
-            <div>
-              <span class="windEmoji">🌬</span>
-              <span class="windSpeed" id="windSpeed">15</span>
+            <div class="row row2">
+                <div class="col-3 group1">
+                    <div>
+                        <span class="windEmoji">🌬</span>
+                        <span class="windSpeed" id="windSpeed"></span>
+                    </div>
+                    <div>
+                        <span class="windUnit">mph</span>
+                    </div>
+                </div>
+                <div class="col-6 group2">
+                    <span class="temperature" id="temperature"></span>
+                    <span class="fahrenheit">˚F</span>
+                </div>
+                <div class="col-3 group3">
+                    <div class="humidity" id="humidity"></div>
+                    <div class="humidityLabel">Humidity</div>
+                </div>
             </div>
-            <div>
-              <span class="windUnit">km/h</span>
-            </div>
-          </div>
-          <div class="col-6 group2">
-            <span class="temperature" id="temperature">20</span>
-            <span class="tempUnits">
-              <a class="celsius" href="">˚F</a>
-            </span>
-          </div>
-          <div class="col group3">
-            <div class="humidity" id="humidity">36%</div>
-            <div class="humidityLable">Humidity</div>
-          </div>
-        </div>
 
-        <form id="search-form">
-          <div class="row row3 mt-3">
-            <div class="col set1">
-              <input
-                class="sunEjoji"
-                type="image"
-                src="images/sunEmoji.png "
-                alt="Sunset Image"
-              />
-              <div class="sunLabels">
-                <span class="sunriseLabel">Sunrise</span>
-                <span> | </span>
-                <span class="sunsetLabel">Sunset</span>
-              </div>
-              <div class="sunTimes">
-                <span class="sunriseTime">6:05</span>
-                <span> | </span>
-                <span class="sunsetTime">21:15</span>
-              </div>
-            </div>
-            <div class="col-5 set2">
-              <div class="city">
-                <span id="city">Seattle</span>, <span id="country">US</span>
-              </div>
-              <span class="search-bar">
+            <form id="search-form">
+                <div class="row row3">
+                    <div class="col-4 set1">
+                        <input class="sunEjoji" type="image" src="/images/sunEmoji.png " alt="Sunrise" title="Sunrise" />
+                        <div class="sunLabels">
+                            <span class="sunriseLabel">Sunrise</span>
+                            <span> | </span>
+                            <span class="sunsetLabel">Sunset</span>
+                        </div>
+                        <div class="sunTimes">
+                            <span class="sunriseTime" id="sunriseTime">6:05</span>
+                            <span> | </span>
+                            <span class="sunsetTime" id="sunsetTime">21:15</span>
+                        </div>
+                    </div>
+                    <div class="col-4 set2">
+                        <div class="city">
+                            <span id="city"></span>, <span id="country"></span>
+                        </div>
+                        <span class="search-bar">
                 <input
                   class="form-control"
                   id="city-search"
@@ -86,78 +69,27 @@
                   placeholder="Enter location... "
                 />
               </span>
-              <div class="date" id="date"></div>
-            </div>
-            <div class="col-3 set3">
-              <div>
-                <span>
+                        <div class="date" id="date"></div>
+                    </div>
+                    <div class="col-4 set3">
+                        <div>
+                            <span>
                   <button type="submit" class="searchButton">Search</button>
                 </span>
-                <span class="locationButton">
+                            <span class="locationButton">
                   <button>
                     <i class="fas fa-map-marker-alt location" id="location"></i>
                   </button>
                 </span>
-              </div>
-            </div>
-          </div>
-        </form>
-
-        <div class="row row4 mt-3">
-          <div class="col dayset1">
-            <div class="day day1">Mon</div>
-            <div class="weather weather1">🌤</div>
-            <div class="temp temp1">
-              <span class="high">20˚</span>
-              <span> | </span>
-              <span class="low">16˚</span>
-            </div>
-          </div>
-          <div class="col daySet2">
-            <div class="day day2">Tue</div>
-            <div class="weather weather2">⛅️</div>
-            <div class="temp temp2">
-              <span class="high">20˚</span>
-              <span> | </span>
-              <span class="low">16˚</span>
-            </div>
-          </div>
-          <div class="col dayset3">
-            <div class="day day3">Wed</div>
-            <div class="weather weather3">🌧</div>
-            <div class="temp temp3">
-              <span class="high">20˚</span>
-              <span> | </span>
-              <span class="low">16˚</span>
-            </div>
-          </div>
-          <div class="col daySset4">
-            <div class="day day4">Thu</div>
-            <div class="weather weather4">🌧</div>
-            <div class="temp temp4">
-              <span class="high">20˚</span>
-              <span> | </span>
-              <span class="low">16˚</span>
-            </div>
-          </div>
-          <div class="col daySet5">
-            <div class="day day5">Fri</div>
-            <div class="weather weather5">🌧</div>
-            <div class="temp temp5">
-              <span class="high">20˚</span>
-              <span> | </span>
-              <span class="low">16˚</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row row5">
-          <div class="col"></div>
-          <div class="col-7 codedBy">
-            <a
-              class="openSourceLink"
-              href="https://github.com/TransformativeBeing/Weather-App"
-            >
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="weatherForcast" id="weatherForecast"></div>
+            <div class="row row5">
+                <div class="col"></div>
+                <div class="col-7 codedBy">
+                    <a class="openSourceLink" href="https://github.com/TransformativeBeing/Weather-App">
               Open-Source Code </a
             ><span>by Jessica Nolte</span>
           </div>
@@ -166,6 +98,6 @@
       </div>
     </div>
 
-    <script src="src/App.js"></script>
+    <script src="src/app.js"></script>
   </body>
 </html>
