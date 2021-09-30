@@ -16,7 +16,7 @@ body {
 
 .circle {
   display: block;
-  margin: 100px auto 100px;
+  margin: 100px auto;
   border: 1px solid var(--primary-color);
   border-radius: 50%;
   width: 500px;
